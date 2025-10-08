@@ -39,9 +39,10 @@ jobs:
         # push
       - name: commmit et push
         run: |
+          NOMFICHIER="Q4_archive_${DATEFICHIER}.txt"
           git config --global user.name sebeaty
           git config --global user.email sebachamp007@outlook.fr
           git pull --rebase origin main
-          git add .
+          git add $NOMFICHIER
           git commit -m "test push "
           git push
