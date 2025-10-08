@@ -31,6 +31,7 @@ jobs:
 
     - name: Commit and push Q5 archive file
       run: |
+        git pull --rebase origin main
         git add Q4_archive_${DATE}.txt
         git commit -m "Add Q4_archive_${DATE}.txt"
         git push
