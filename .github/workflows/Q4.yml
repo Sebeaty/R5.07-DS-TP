@@ -32,7 +32,7 @@ jobs:
       - name: nom date JJ-MM-AAAA
         run: | 
           echo "DATEFICHIER=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
-          echo "NOMFICHIER="Q4_archive_${DATEFICHIER}.txt"" >> $GITHUB_ENV
+          echo "NOMFICHIER=Q4_archive_${DATEFICHIER}.txt" >> $GITHUB_ENV
           echo "CHAMPVILLARD SÉBASTIEN" > $NOMFICHIER
           cat Q4.java >> $NOMFICHIER
         
