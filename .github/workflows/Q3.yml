@@ -41,4 +41,5 @@ jobs:
           git config --global user.email sebachamp007@outlook.fr
           git add Q3_archive_java.txt 
           git commit -m "test push de Q3_archive_java.txt"
+          git pull
           git push
