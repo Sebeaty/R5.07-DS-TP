@@ -1,48 +1,36 @@
-# This is a basic workflow to help you get started with Actions
+name: Q4_java_date
 
-name: Q4
-
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-  
+on: [push]
 permissions:
   contents: write
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  create_q4_archive:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: nom date JJ-MM-AAAA
-        run: | 
-          echo "DATEFICHIER=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
-          NOMFICHIER="Q4_archive_${DATEFICHIER}.txt"
-          echo "CHAMPVILLARD SÉBASTIEN" > $NOMFICHIER
-          cat Q4.java >> $NOMFICHIER
-        
-        # push
-      - name: commmit et push
-        run: |
-          NOMFICHIER="Q4_archive_${DATEFICHIER}.txt"
-          git config --global user.name sebeaty
-          git config --global user.email sebachamp007@outlook.fr
-          git pull --rebase origin main
-          git add $NOMFICHIER
-          git commit -m "test push "
-          git push
+    - name: Get formatted date
+      id: get_date
+      run: |
+        echo "DATE=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
+
+    - name: Create Q4 archive file
+      run: |
+        FILE_NAME="Q4_archive_${DATE}.txt"
+        echo "CHAMPVILLARD Sébastien" > $FILE_NAME
+        echo " " >> $FILE_NAME
+        cat Q4.java >> $FILE_NAME
+
+    - name: Configuration de Git
+      run: |
+        git config --global user.name sebeaty
+        git config --global user.email sebachamp007@outlook.fr
+
+    - name: Commit and push Q5 archive file
+      run: |
+        git add Q4_archive_${DATE}.txt
+        git commit -m "Add Q4_archive_${DATE}.txt"
+        git push
