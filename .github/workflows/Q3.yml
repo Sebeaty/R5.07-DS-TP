@@ -31,7 +31,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: teste creation nouveau fichier
         run: | 
-          cat Q3_archive_java.txt
           echo "CHAMPVILLARD SÉBASTIEN" > Q3_archive_java.txt
           cat Q3.java >> Q3_archive_java.txt
         
