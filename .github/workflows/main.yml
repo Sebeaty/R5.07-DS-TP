@@ -1,0 +1,49 @@
+name: Q6_java_date_diff
+
+on: [push]
+permissions:
+  contents: write
+
+jobs:
+  create_q6_archive:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Get formatted date
+      id: get_date
+      run: |
+        echo "DATE=$(date +'%c')" >> $GITHUB_ENV
+
+    - name: Create Q5 archive file
+      run: |
+        FILE_NAME="Q6_archive_${DATE}.txt"
+        echo "CHAMPVILLARD Sébastien" > $FILE_NAME
+        echo " " >> $FILE_NAME
+        cat Q6.java >> $FILE_NAME
+        wc -c < Q6.java >> $FILE_NAME
+        wc -l < Q6.java >> $FILE_NAME
+
+    - name: Comparer avec l'ancien Q6_archive_date
+      run: |
+        PREVIOUS_FILE=$(ls Q6_archive_*.txt | sort | tail -n 2 | head -n 1)
+        
+        if [ -n "$PREVIOUS_FILE" ]; then
+          echo "Comparing $PREVIOUS_FILE with Q6_archive_${DATE}.txt"
+          diff $PREVIOUS_FILE Q6_archive_${DATE}.txt > Q6_différences.txt
+        else
+          echo "Aucun fichier précédent trouvé, aucune comparaison effectuée." > Q6_différences.txt
+        fi
+
+    - name: Configuration de Git
+      run: |
+        git config --global user.name sebeaty
+        git config --global user.email sebachamp007@outlook.fr
+
+    - name: Commit and push Q5 archive file
+      run: |
+        git add Q6_archive_${DATE}.txt Q6_différences.txt
+        git commit -m "Add Q6_archive_${DATE}.txt and Q6_différences.txt"
+        git push
