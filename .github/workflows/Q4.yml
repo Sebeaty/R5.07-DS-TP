@@ -31,7 +31,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: nom date JJ-MM-AAAA
         run: | 
-          $dateFichier = date +%d-%m-%Y 
+          $dateFichier=date +%d-%m-%Y 
           echo "CHAMPVILLARD SÉBASTIEN" > Q4_archive_${dateFichier}.txt
           cat Q4.java >> Q4_archive_${dateFichier}.txt
         
