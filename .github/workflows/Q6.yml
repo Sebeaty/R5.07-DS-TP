@@ -17,12 +17,12 @@ jobs:
       run: |
         echo "DATE=$(date +'%c')" >> $GITHUB_ENV
 
-    - name: Create Q5 archive file
+    - name: Creer Q6_archive_date
       run: |
         FILE_NAME="Q6_archive_${DATE}.txt"
         echo "CHAMPVILLARD Sébastien" > $FILE_NAME
-        echo " " >> $FILE_NAME
         cat Q6.java >> $FILE_NAME
+        echo "Taille du fichier Q6.java (en caractères et en lignes):" >> $FILE_NAME
         wc -c < Q6.java >> $FILE_NAME
         wc -l < Q6.java >> $FILE_NAME
 
