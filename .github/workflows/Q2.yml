@@ -34,7 +34,7 @@ jobs:
           date > Q2_archive_TOTO.txt
           echo "CHAMPVILLARD SÉBASTIEN" >> Q2_archive_TOTO.txt
           cat TOTO.txt >> Q2_archive_TOTO.txt
-          du TOTO.txt
+          wc TOTO.txt
         
         # push
       - name: commmit et push
