@@ -1,0 +1,28 @@
+name: Q1_archive_TOTO
+
+on: [push]
+permissions:
+  contents: write
+
+jobs:
+  copy-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create Q1_archive_TOTO.txt
+        run: |
+          cp TOTO.txt Q1_archive_TOTO.txt
+
+      - name: Configure Git
+        run: |
+          git config user.name sebeaty
+          git config user.email sebachamp007@outlook.fr
+
+      - name: Push Q1_archive_README.md
+        run: |
+          git add Q1_archive_TOTO.txt
+          git commit -m "Add Q1_archive_TOTO.txt"
+          git push
