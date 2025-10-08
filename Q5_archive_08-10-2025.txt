@@ -9,7 +9,7 @@ public class Q5
       {
         for(int j=n;j>=i;j--)
         {
-          s+=""+j+" ";
+          s+="x ";
         }
         s+="\n";
       }
