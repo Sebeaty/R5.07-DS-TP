@@ -41,7 +41,7 @@ jobs:
         run: |
           git config --global user.name sebeaty
           git config --global user.email sebachamp007@outlook.fr
+          git pull --rebase origin main
           git add .
           git commit -m "test push "
-          git pull
           git push
