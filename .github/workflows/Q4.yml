@@ -42,4 +42,5 @@ jobs:
           git config --global user.email sebachamp007@outlook.fr
           git add .
           git commit -m "test push "
+          git pull
           git push
